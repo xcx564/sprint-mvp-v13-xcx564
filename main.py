@@ -77,5 +77,20 @@ def water_cost():
 MENU.append(("Рассчитать стоимость воды", water_cost))
 
 
+# ===== US-4. Итог к оплате =====
+def total_bill():
+    if len(bills) == 0:
+        print("Сначала рассчитайте стоимость услуг")
+        return
+    total = 0
+    for service in bills:
+        print(f"{service}: {bills[service]:.2f} руб.")
+        total = total + bills[service]
+    print(f"ИТОГО к оплате: {total:.2f} руб.")
+
+
+MENU.append(("Итог к оплате", total_bill))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
