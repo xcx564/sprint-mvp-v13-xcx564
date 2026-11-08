@@ -55,5 +55,27 @@ def enter_water():
 MENU.append(("Ввести показания воды", enter_water))
 
 
+# ===== US-3. Стоимость воды =====
+COLD_TARIFF = 58.0  # руб. за 1 куб. м (условный тариф)
+HOT_TARIFF = 300.0  # руб. за 1 куб. м (условный тариф)
+
+
+def water_cost():
+    if "хол_было" not in readings:
+        print("Сначала введите показания воды")
+        return
+    cold = readings["хол_стало"] - readings["хол_было"]
+    hot = readings["гор_стало"] - readings["гор_было"]
+    cold_cost = cold * COLD_TARIFF
+    hot_cost = hot * HOT_TARIFF
+    bills["Холодная вода"] = cold_cost
+    bills["Горячая вода"] = hot_cost
+    print(f"Холодная вода: {cold:.2f} куб. м — {cold_cost:.2f} руб.")
+    print(f"Горячая вода: {hot:.2f} куб. м — {hot_cost:.2f} руб.")
+
+
+MENU.append(("Рассчитать стоимость воды", water_cost))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
