@@ -108,5 +108,22 @@ def power_cost():
 MENU.append(("Рассчитать электроэнергию", power_cost))
 
 
+# ===== US-6. Проверка показаний =====
+def check_readings():
+    checks = [("хол_было", "хол_стало", "Холодная вода"),
+              ("гор_было", "гор_стало", "Горячая вода"),
+              ("эл_было", "эл_стало", "Электроэнергия")]
+    ok = True
+    for before, now, name in checks:
+        if before in readings and readings[now] < readings[before]:
+            print(f"Ошибка: {name} — текущие показания меньше прошлых!")
+            ok = False
+    if ok:
+        print("Показания введены правильно")
+
+
+MENU.append(("Проверить показания", check_readings))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
