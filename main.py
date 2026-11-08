@@ -92,5 +92,21 @@ def total_bill():
 MENU.append(("Итог к оплате", total_bill))
 
 
+# ===== US-5. Электроэнергия =====
+POWER_TARIFF = 9.0  # руб. за 1 кВт*ч (условный тариф)
+
+
+def power_cost():
+    readings["эл_было"] = ask_float("Электричество, прошлые показания: ")
+    readings["эл_стало"] = ask_float("Электричество, текущие показания: ")
+    used = readings["эл_стало"] - readings["эл_было"]
+    cost = used * POWER_TARIFF
+    bills["Электроэнергия"] = cost
+    print(f"Электроэнергия: {used:.1f} кВт*ч — {cost:.2f} руб.")
+
+
+MENU.append(("Рассчитать электроэнергию", power_cost))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
